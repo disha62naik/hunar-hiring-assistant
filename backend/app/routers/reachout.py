@@ -208,7 +208,10 @@ async def create_search(body: ReachoutSearchCreate, session: Session = Depends(g
     except Exception as e:  # noqa: BLE001
         pass  # candidates can still be searched; retry-create-agent before triggering calls
 
+    try:
     people = await search_people(criteria, max_results=body.max_results)
+except Exception as e:
+    raise HTTPException(502, f"People search failed: {e}")
 
     candidates = []
     for p in people:
