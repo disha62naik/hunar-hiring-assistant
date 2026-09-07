@@ -7,8 +7,7 @@ export interface Screening {
   created_at: string;
 }
 
-// Mirrors Hunar's Call.status enum, plus our own local-only "pending"
-// (set before Hunar has responded to the trigger-call request at all).
+
 export type CallStatus =
   | "pending"
   | "NOT_STARTED"
